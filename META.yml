@@ -1,0 +1,23 @@
+--- #YAML:1.0
+name:               Plack-App-TemplateToolkit
+version:            0.01
+abstract:           ~
+author:  []
+license:            unknown
+distribution_type:  module
+configure_requires:
+    ExtUtils::MakeMaker:  0
+requires:
+    HTTP::Request:  0
+    Path::Class:    0
+    Plack:          0.9901
+    Template:       2
+    Test::More:     0
+no_index:
+    directory:
+        - t
+        - inc
+generated_by:       ExtUtils::MakeMaker version 6.48
+meta-spec:
+    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
+    version:  1.4
