@@ -1,0 +1,57 @@
+{
+   "abstract" : "Basic Plack App Template Toolkit",
+   "author" : [
+      "Leo Lapworth <LLAP@cuckoo.org>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.110240",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Plack-App-TemplateToolkit",
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "6.30"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Plack::Component" : 0,
+            "Plack::Request" : "0.9901",
+            "Plack::Util::Accessor" : 0,
+            "Template" : "2",
+            "parent" : 0
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Cwd" : 0,
+            "English" : 0,
+            "HTTP::Request" : 0,
+            "Path::Class" : 0,
+            "Plack::Builder" : 0,
+            "Plack::Middleware::ErrorDocument" : 0,
+            "Plack::Test" : 0,
+            "Test::More" : 0
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Plack-App-TemplateToolkit"
+      },
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/ranguard/Plack-App-TemplateToolkit.git",
+         "web" : "https://github.com/ranguard/Plack-App-TemplateToolkit"
+      }
+   },
+   "version" : "0.03"
+}
+

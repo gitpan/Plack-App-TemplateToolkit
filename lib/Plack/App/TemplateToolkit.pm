@@ -1,15 +1,16 @@
 package Plack::App::TemplateToolkit;
+BEGIN {
+  $Plack::App::TemplateToolkit::VERSION = '0.03';
+}
 use strict;
 use warnings;
 
 use parent qw( Plack::Component );
-use Plack::Request;
-use Template;
-
-our $VERSION = 0.01;
+use Plack::Request 0.9901;
+use Template 2;
 
 use Plack::Util::Accessor
-    qw( root dir_index path extension content_type tt eval_perl);
+    qw( root dir_index path extension content_type tt eval_perl pre_process);
 
 sub prepare_app {
     my ($self) = @_;
@@ -26,6 +27,8 @@ sub prepare_app {
         POST_CHOMP   => 1,                     # cleanup whitespace
         EVAL_PERL    => $self->eval_perl(),    # evaluate Perl code blocks
     };
+
+    $config->{PRE_PROCESS} = $self->pre_process() if $self->pre_process();
 
     # create Template object
     $self->tt( Template->new($config) );
@@ -92,11 +95,17 @@ sub _handle_tt {
 
 1;
 
-__END__
+
+
+=pod
 
 =head1 NAME
 
-Plack::App::TemplateToolkit - Basic Template Toolkit
+Plack::App::TemplateToolkit
+
+=head1 VERSION
+
+version 0.03
 
 =head1 SYNOPSIS
 
@@ -144,6 +153,10 @@ look at a propper framework such as L<Catalyst> if you do want to use them:
 You can mix this application with other Plack::App applications which
 you will find on CPAN.
 
+=head1 NAME
+
+Plack::App::TemplateToolkit - Basic Plack App Template Toolkit
+
 =head1 CONFIGURATIONS
 
 =over 4
@@ -170,18 +183,30 @@ Which file to use as a directory index, defaults to index.html
 False by default, this option lets you run perl blocks in your
 templates - I would strongly recommend NOT using this.
 
+=item pre_process
+
+Optional, supply a file to pre process before serving each html file
+(passed to C<Template> as PRE_PROCESS)
+
 =back
-
-=head1 REPO
-
-https://github.com/ranguard/Plack-App-TemplateToolkit/
-
-=head1 AUTHOR
-
-Leo Lapworth
 
 =head1 SEE ALSO
 
-L<Plack>
+L<Plack>, L<Template>
+
+=head1 AUTHOR
+
+Leo Lapworth <LLAP@cuckoo.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2011 by Leo Lapworth.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
+
+
+__END__
+
