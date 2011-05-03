@@ -17,4 +17,5 @@ t/release-pod-syntax.t
 t/root/index.html
 t/root/page_not_found.html
 t/root/pre.html
+t/root/process.html
 t/tt.t
