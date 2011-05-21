@@ -1,6 +1,6 @@
 package Plack::App::TemplateToolkit;
 BEGIN {
-  $Plack::App::TemplateToolkit::VERSION = '0.04';
+  $Plack::App::TemplateToolkit::VERSION = '0.05';
 }
 use strict;
 use warnings;
@@ -10,7 +10,7 @@ use Plack::Request 0.9901;
 use Template 2;
 
 use Plack::Util::Accessor
-    qw( root dir_index path extension content_type tt eval_perl pre_process process);
+    qw( root interpolate post_chomp dir_index path extension content_type tt eval_perl pre_process process);
 
 sub prepare_app {
     my ($self) = @_;
@@ -19,13 +19,15 @@ sub prepare_app {
 
     $self->dir_index('index.html')   unless $self->dir_index();
     $self->content_type('text/html') unless $self->content_type();
-    $self->eval_perl(0)              unless $self->eval_perl();
+    $self->interpolate(0)            unless defined $self->interpolate();
+    $self->eval_perl(0)              unless defined $self->eval_perl();
+    $self->post_chomp(1)             unless defined $self->post_chomp();
 
     my $config = {
-        INCLUDE_PATH => $self->root(),         # or list ref
-        INTERPOLATE  => 1,                     # expand "$var" in plain text
-        POST_CHOMP   => 1,                     # cleanup whitespace
-        EVAL_PERL    => $self->eval_perl(),    # evaluate Perl code blocks
+        INCLUDE_PATH => $self->root(),           # or list ref
+        INTERPOLATE  => $self->interpolate(),    # expand "$var" in plain text
+        POST_CHOMP   => $self->post_chomp(),     # cleanup whitespace
+        EVAL_PERL    => $self->eval_perl(),      # evaluate Perl code blocks
     };
 
     $config->{PRE_PROCESS} = $self->pre_process() if $self->pre_process();
@@ -106,7 +108,7 @@ Plack::App::TemplateToolkit
 
 =head1 VERSION
 
-version 0.04
+version 0.05
 
 =head1 SYNOPSIS
 
@@ -151,8 +153,8 @@ look at a propper framework such as L<Catalyst> if you do want to use them:
 
   [% params.get('field') %] params is a L<Hash::MultiValue>
 
-You can mix this application with other Plack::App applications which
-you will find on CPAN.
+You can mix this application with other Plack::App applications and
+Plack::Middleware which you will find on CPAN.
 
 =head1 NAME
 
@@ -179,15 +181,28 @@ Specify the Content-Type header you want returned, defaults to text/html
 
 Which file to use as a directory index, defaults to index.html
 
-=item eval_perl
-
-False by default, this option lets you run perl blocks in your
-templates - I would strongly recommend NOT using this.
-
 =item pre_process
 
 Optional, supply a file to pre process before serving each html file
-(passed to C<Template> as PRE_PROCESS)
+(see C<Template> configuration PRE_PROCESS)
+
+=item process
+
+Optional, supply a file to process (see C<Template> configuration PROCESS)
+
+=item eval_perl
+
+Default to 0, this option lets you run perl blocks in your
+templates - I would strongly recommend NOT using this.
+(see C<Template> configuration EVAL_PERL)
+
+=item interpolate
+
+Default to 0, see C<Template> configuration INTERPOLATE
+
+=item post_chomp
+
+Defaults to 1, see C<Template> configuration POST_CHOMP
 
 =back
 

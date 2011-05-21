@@ -48,10 +48,10 @@
       },
       "repository" : {
          "type" : "git",
-         "url" : "https://github.com/ranguard/Plack-App-TemplateToolkit.git",
+         "url" : "https://github.com/ranguard/Plack-App-TemplateToolkit",
          "web" : "https://github.com/ranguard/Plack-App-TemplateToolkit"
       }
    },
-   "version" : "0.04"
+   "version" : "0.05"
 }
 
