@@ -9,7 +9,7 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'Basic Plack App Template Toolkit',
+  'ABSTRACT' => 'DEPRECIATED use Plack::Middleware::TemplateToolkit',
   'AUTHOR' => 'Leo Lapworth <LLAP@cuckoo.org>',
   'BUILD_REQUIRES' => {
     'Cwd' => '0',
@@ -35,7 +35,7 @@ my %WriteMakefileArgs = (
     'Template' => '2',
     'parent' => '0'
   },
-  'VERSION' => '0.05',
+  'VERSION' => '0.06',
   'test' => {
     'TESTS' => 't/*.t'
   }

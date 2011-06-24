@@ -1,10 +1,10 @@
 {
-   "abstract" : "Basic Plack App Template Toolkit",
+   "abstract" : "DEPRECIATED use Plack::Middleware::TemplateToolkit",
    "author" : [
       "Leo Lapworth <LLAP@cuckoo.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200006, CPAN::Meta::Converter version 2.110240",
+   "generated_by" : "Dist::Zilla version 4.200007, CPAN::Meta::Converter version 2.110440",
    "license" : [
       "perl_5"
    ],
@@ -45,13 +45,8 @@
    "resources" : {
       "bugtracker" : {
          "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Plack-App-TemplateToolkit"
-      },
-      "repository" : {
-         "type" : "git",
-         "url" : "https://github.com/ranguard/Plack-App-TemplateToolkit",
-         "web" : "https://github.com/ranguard/Plack-App-TemplateToolkit"
       }
    },
-   "version" : "0.05"
+   "version" : "0.06"
 }
 
